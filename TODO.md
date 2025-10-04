@@ -12,3 +12,4 @@
 [ ] Olympus/Panasonic tethering app
 [ ] Keyboard changer... for instance I don't want NumLock to do anything on my laptop
 [ ] Ollama <-> GGUF converter
+[ ] Puzzle creator
