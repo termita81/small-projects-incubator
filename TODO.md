@@ -25,3 +25,7 @@
 [ ] Ollama <-> GGUF converter
 
 [ ] Puzzle creator
+
+[ ] My website
+
+[ ] Otp-Sharp-Cli
