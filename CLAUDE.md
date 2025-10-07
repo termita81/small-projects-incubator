@@ -18,3 +18,6 @@ The repository is currently in its initial state with no active projects. When n
 ## License
 
 All code in this repository is licensed under the MIT License.
+
+## Code style
+Javascript and Typescript code does not use semicolons, unless necessary. Strings are single-quoted wherever possible. 
