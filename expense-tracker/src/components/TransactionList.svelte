@@ -67,23 +67,23 @@
   .empty-state {
     text-align: center;
     padding: 3rem 1rem;
-    color: #6c757d;
+    color: var(--text-secondary);
   }
 
   .transaction-item {
-    background: white;
-    border: 1px solid #dee2e6;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 1rem;
     transition: box-shadow 0.2s;
   }
 
   .transaction-item:hover {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px var(--shadow);
   }
 
   .transaction-item.income {
-    border-left: 4px solid #28a745;
+    border-left: 4px solid var(--income-color);
   }
 
   .transaction-main {
@@ -110,7 +110,7 @@
     display: flex;
     gap: 1rem;
     font-size: 0.875rem;
-    color: #6c757d;
+    color: var(--text-secondary);
   }
 
   .date {
@@ -136,17 +136,17 @@
   }
 
   .amount.positive {
-    color: #28a745;
+    color: var(--income-color);
   }
 
   .amount.negative {
-    color: #dc3545;
+    color: var(--expense-color);
   }
 
   .delete-btn {
     background: none;
     border: none;
-    color: #dc3545;
+    color: var(--expense-color);
     font-size: 1.5rem;
     line-height: 1;
     cursor: pointer;

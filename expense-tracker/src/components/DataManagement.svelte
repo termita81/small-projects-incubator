@@ -104,15 +104,16 @@
   .data-management {
     margin-top: 3rem;
     padding: 1.5rem;
-    background: #f8f9fa;
+    background: var(--bg-secondary);
     border-radius: 8px;
+    border: 1px solid var(--border-color);
   }
 
   h3 {
     margin: 0 0 1rem 0;
     font-size: 1.125rem;
     font-weight: 600;
-    color: #495057;
+    color: var(--text-primary);
   }
 
   .actions {
@@ -123,9 +124,10 @@
 
   .btn {
     padding: 0.5rem 1rem;
-    border: 1px solid #ced4da;
+    border: 1px solid var(--border-color);
     border-radius: 6px;
-    background: white;
+    background: var(--bg-primary);
+    color: var(--text-primary);
     cursor: pointer;
     font-size: 0.875rem;
     font-weight: 500;
@@ -133,17 +135,16 @@
   }
 
   .btn:hover {
-    background: #e9ecef;
-    border-color: #adb5bd;
+    background: var(--bg-tertiary);
   }
 
   .btn-danger {
-    color: #dc3545;
-    border-color: #dc3545;
+    color: var(--expense-color);
+    border-color: var(--expense-color);
   }
 
   .btn-danger:hover {
-    background: #dc3545;
+    background: var(--expense-color);
     color: white;
   }
 

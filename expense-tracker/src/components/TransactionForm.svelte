@@ -174,13 +174,13 @@
   }
 
   .modal {
-    background: white;
+    background: var(--bg-primary);
     border-radius: 8px;
     max-width: 500px;
     width: 100%;
     max-height: 90vh;
     overflow-y: auto;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px var(--shadow);
   }
 
   .modal-header {
@@ -188,13 +188,14 @@
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem;
-    border-bottom: 1px solid #dee2e6;
+    border-bottom: 1px solid var(--border-color);
   }
 
   .modal-header h2 {
     margin: 0;
     font-size: 1.5rem;
     font-weight: 600;
+    color: var(--text-primary);
   }
 
   .close-btn {
@@ -203,14 +204,14 @@
     font-size: 2rem;
     line-height: 1;
     cursor: pointer;
-    color: #6c757d;
+    color: var(--text-secondary);
     padding: 0;
     width: 2rem;
     height: 2rem;
   }
 
   .close-btn:hover {
-    color: #212529;
+    color: var(--text-primary);
   }
 
   form {
@@ -225,7 +226,7 @@
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 500;
-    color: #495057;
+    color: var(--text-primary);
   }
 
   .form-group input[type="text"],
@@ -233,15 +234,17 @@
   .form-group input[type="date"] {
     width: 100%;
     padding: 0.5rem;
-    border: 1px solid #ced4da;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     font-size: 1rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
   }
 
   .form-group input:focus {
     outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
   }
 
   .radio-group {
@@ -270,22 +273,23 @@
 
   .category-tag {
     padding: 0.375rem 0.75rem;
-    border: 1px solid #ced4da;
+    border: 1px solid var(--border-color);
     border-radius: 16px;
-    background: white;
+    background: var(--bg-primary);
+    color: var(--text-primary);
     cursor: pointer;
     font-size: 0.875rem;
     transition: all 0.2s;
   }
 
   .category-tag:hover {
-    background: #f8f9fa;
+    background: var(--bg-secondary);
   }
 
   .category-tag.selected {
-    background: #007bff;
+    background: var(--accent-color);
     color: white;
-    border-color: #007bff;
+    border-color: var(--accent-color);
   }
 
   .add-category {
@@ -296,14 +300,16 @@
   .add-category input {
     flex: 1;
     padding: 0.5rem;
-    border: 1px solid #ced4da;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     font-size: 0.875rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
   }
 
   .add-category button {
     padding: 0.5rem 1rem;
-    background: #28a745;
+    background: var(--income-color);
     color: white;
     border: none;
     border-radius: 4px;
@@ -313,7 +319,7 @@
   }
 
   .add-category button:hover {
-    background: #218838;
+    opacity: 0.9;
   }
 
   .form-actions {
@@ -322,7 +328,7 @@
     justify-content: flex-end;
     margin-top: 2rem;
     padding-top: 1rem;
-    border-top: 1px solid #dee2e6;
+    border-top: 1px solid var(--border-color);
   }
 
   .btn-primary,
@@ -337,20 +343,20 @@
   }
 
   .btn-primary {
-    background: #007bff;
+    background: var(--accent-color);
     color: white;
   }
 
   .btn-primary:hover {
-    background: #0056b3;
+    background: var(--accent-hover);
   }
 
   .btn-secondary {
-    background: #6c757d;
+    background: var(--text-secondary);
     color: white;
   }
 
   .btn-secondary:hover {
-    background: #5a6268;
+    opacity: 0.9;
   }
 </style>

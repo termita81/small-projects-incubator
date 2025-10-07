@@ -1,15 +1,24 @@
 <script>
+  import { onMount } from 'svelte';
+  import { theme } from './stores/theme.js';
   import { summary } from './stores/transactions.js';
   import TransactionForm from './components/TransactionForm.svelte';
   import TransactionList from './components/TransactionList.svelte';
   import DataManagement from './components/DataManagement.svelte';
+  import ThemeToggle from './components/ThemeToggle.svelte';
 
   let showForm = false;
+
+  onMount(() => {
+    theme.init();
+  });
 
   function formatCurrency(amount) {
     return amount.toFixed(2);
   }
 </script>
+
+<ThemeToggle />
 
 <main>
   <header>
@@ -73,17 +82,18 @@
   }
 
   .summary-card {
-    background: #f8f9fa;
+    background: var(--bg-secondary);
     padding: 1.5rem;
     border-radius: 8px;
     text-align: center;
+    border: 1px solid var(--border-color);
   }
 
   .summary-card h3 {
     margin: 0 0 0.5rem 0;
     font-size: 0.875rem;
     font-weight: 500;
-    color: #6c757d;
+    color: var(--text-secondary);
     text-transform: uppercase;
   }
 
@@ -94,11 +104,11 @@
   }
 
   .amount.positive {
-    color: #28a745;
+    color: var(--income-color);
   }
 
   .amount.negative {
-    color: #dc3545;
+    color: var(--expense-color);
   }
 
   .actions {
@@ -108,7 +118,7 @@
   }
 
   .btn-primary {
-    background: #007bff;
+    background: var(--accent-color);
     color: white;
     border: none;
     padding: 0.75rem 2rem;
@@ -120,7 +130,7 @@
   }
 
   .btn-primary:hover {
-    background: #0056b3;
+    background: var(--accent-hover);
   }
 
   .transactions {
