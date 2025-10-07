@@ -59,6 +59,14 @@
     }
   }
 
+  function removeCategory(category, event) {
+    event.stopPropagation();
+    if (confirm(`Remove category "${category}"?`)) {
+      categories.remove(category);
+      formData.categories = formData.categories.filter(c => c !== category);
+    }
+  }
+
   function handleClose() {
     dispatch('close');
   }
@@ -130,6 +138,7 @@
                 on:click={() => toggleCategory(category)}
               >
                 {category}
+                <span class="remove-category" on:click={(e) => removeCategory(category, e)}>×</span>
               </button>
             {/each}
           </div>
@@ -280,6 +289,9 @@
     cursor: pointer;
     font-size: 0.875rem;
     transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
   }
 
   .category-tag:hover {
@@ -290,6 +302,22 @@
     background: var(--accent-color);
     color: white;
     border-color: var(--accent-color);
+  }
+
+  .remove-category {
+    font-size: 1.25rem;
+    line-height: 1;
+    opacity: 0.6;
+    margin-left: 0.25rem;
+  }
+
+  .remove-category:hover {
+    opacity: 1;
+    color: var(--expense-color);
+  }
+
+  .category-tag.selected .remove-category:hover {
+    color: #ffcccc;
   }
 
   .add-category {
