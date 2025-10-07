@@ -1,5 +1,14 @@
 <script>
+  import { summary } from './stores/transactions.js';
+  import TransactionForm from './components/TransactionForm.svelte';
+  import TransactionList from './components/TransactionList.svelte';
+  import DataManagement from './components/DataManagement.svelte';
 
+  let showForm = false;
+
+  function formatCurrency(amount) {
+    return amount.toFixed(2);
+  }
 </script>
 
 <main>
@@ -10,29 +19,33 @@
   <section class="summary">
     <div class="summary-card">
       <h3>Balance</h3>
-      <p class="amount">$0.00</p>
+      <p class="amount" class:positive={$summary.balance > 0} class:negative={$summary.balance < 0}>
+        ${formatCurrency($summary.balance)}
+      </p>
     </div>
     <div class="summary-card">
       <h3>Income</h3>
-      <p class="amount positive">$0.00</p>
+      <p class="amount positive">${formatCurrency($summary.income)}</p>
     </div>
     <div class="summary-card">
       <h3>Expenses</h3>
-      <p class="amount negative">$0.00</p>
+      <p class="amount negative">${formatCurrency($summary.expenses)}</p>
     </div>
   </section>
 
   <section class="actions">
-    <button class="btn-primary">+ Add Transaction</button>
+    <button class="btn-primary" on:click={() => showForm = true}>+ Add Transaction</button>
   </section>
 
   <section class="transactions">
     <h2>Recent Transactions</h2>
-    <div class="empty-state">
-      <p>No transactions yet. Add your first transaction to get started!</p>
-    </div>
+    <TransactionList />
   </section>
+
+  <DataManagement />
 </main>
+
+<TransactionForm bind:show={showForm} on:close={() => showForm = false} />
 
 <style>
   main {
@@ -118,11 +131,5 @@
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 1rem;
-  }
-
-  .empty-state {
-    text-align: center;
-    padding: 3rem 1rem;
-    color: #6c757d;
   }
 </style>
