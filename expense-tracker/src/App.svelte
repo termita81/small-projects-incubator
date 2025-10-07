@@ -20,47 +20,74 @@
 
 <ThemeToggle />
 
-<main>
-  <header>
-    <h1>Expense Tracker</h1>
-  </header>
+<div class="app-container">
+  <main>
+    <header>
+      <h1>Expense Tracker</h1>
+    </header>
 
-  <section class="summary">
-    <div class="summary-card">
-      <h3>Balance</h3>
-      <p class="amount" class:positive={$summary.balance > 0} class:negative={$summary.balance < 0}>
-        ${formatCurrency($summary.balance)}
-      </p>
-    </div>
-    <div class="summary-card">
-      <h3>Income</h3>
-      <p class="amount positive">${formatCurrency($summary.income)}</p>
-    </div>
-    <div class="summary-card">
-      <h3>Expenses</h3>
-      <p class="amount negative">${formatCurrency($summary.expenses)}</p>
-    </div>
-  </section>
+    <section class="summary">
+      <div class="summary-item">
+        <span class="label">Income</span>
+        <span class="amount positive">${formatCurrency($summary.income)}</span>
+      </div>
+      <div class="summary-item">
+        <span class="label">Expenses</span>
+        <span class="amount negative">${formatCurrency($summary.expenses)}</span>
+      </div>
+      <div class="summary-item balance">
+        <span class="label">Balance</span>
+        <span class="amount" class:positive={$summary.balance > 0} class:negative={$summary.balance < 0}>
+          ${formatCurrency($summary.balance)}
+        </span>
+      </div>
+    </section>
 
-  <section class="actions">
-    <button class="btn-primary" on:click={() => showForm = true}>+ Add Transaction</button>
-  </section>
+    <section class="actions">
+      <button class="btn-primary" on:click={() => showForm = true}>+ Add Transaction</button>
+    </section>
 
-  <section class="transactions">
-    <h2>Recent Transactions</h2>
-    <TransactionList />
-  </section>
+    <section class="transactions">
+      <h2>Recent Transactions</h2>
+      <TransactionList />
+    </section>
+  </main>
 
-  <DataManagement />
-</main>
+  <footer class="app-footer">
+    <DataManagement />
+  </footer>
+</div>
 
 <TransactionForm bind:show={showForm} on:close={() => showForm = false} />
 
 <style>
+  .app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
   main {
-    max-width: 800px;
+    flex: 1;
+    width: 100%;
     margin: 0 auto;
+    padding: 1rem 10px;
+  }
+
+  .app-footer {
+    position: sticky;
+    bottom: 0;
+    background: var(--bg-primary);
+    border-top: 1px solid var(--border-color);
     padding: 1rem;
+    box-shadow: 0 -2px 8px var(--shadow);
+  }
+
+  .app-footer :global(.data-management) {
+    margin: 0;
+    background: transparent;
+    border: none;
+    padding: 0;
   }
 
   header {
@@ -75,31 +102,40 @@
   }
 
   .summary {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     gap: 1rem;
+    padding: 1rem 2rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
     margin-bottom: 2rem;
   }
 
-  .summary-card {
-    background: var(--bg-secondary);
-    padding: 1.5rem;
-    border-radius: 8px;
-    text-align: center;
-    border: 1px solid var(--border-color);
+  .summary-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    flex: 1;
   }
 
-  .summary-card h3 {
-    margin: 0 0 0.5rem 0;
-    font-size: 0.875rem;
+  .summary-item.balance {
+    padding-left: 1rem;
+    border-left: 1px solid var(--border-color);
+  }
+
+  .label {
+    font-size: 0.75rem;
     font-weight: 500;
     color: var(--text-secondary);
     text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 
   .amount {
-    margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 600;
   }
 
@@ -109,6 +145,20 @@
 
   .amount.negative {
     color: var(--expense-color);
+  }
+
+  @media (max-width: 600px) {
+    .summary {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .summary-item.balance {
+      padding-left: 0;
+      padding-top: 0.75rem;
+      border-left: none;
+      border-top: 1px solid var(--border-color);
+    }
   }
 
   .actions {

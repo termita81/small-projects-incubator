@@ -1,51 +1,53 @@
 <script>
-  import { transactions } from '../stores/transactions.js';
-  import { categories } from '../stores/categories.js';
-  import { createEventDispatcher } from 'svelte';
+  import { transactions } from "../stores/transactions.js";
+  import { categories } from "../stores/categories.js";
+  import { createEventDispatcher } from "svelte";
 
   export let show = false;
 
   const dispatch = createEventDispatcher();
 
   let formData = {
-    type: 'expense',
-    amount: '',
-    description: '',
+    type: "expense",
+    amount: "",
+    description: "",
     categories: [],
-    date: new Date().toISOString().split('T')[0]
+    date: new Date().toISOString().split("T")[0],
   };
 
-  let newCategory = '';
+  let newCategory = "";
 
   function handleSubmit() {
-    if (!formData.amount || formData.amount <= 0) {
-      alert('Please enter a valid amount');
+    const amount = parseFloat(formData.amount);
+
+    if (isNaN(amount) || amount <= 0) {
+      alert("Please enter a valid amount");
       return;
     }
 
     transactions.add({
       type: formData.type,
-      amount: parseFloat(formData.amount),
+      amount,
       description: formData.description,
       categories: formData.categories,
-      date: formData.date
+      date: formData.date,
     });
 
     // Reset form
     formData = {
-      type: 'expense',
-      amount: '',
-      description: '',
+      type: "expense",
+      amount: "",
+      description: "",
       categories: [],
-      date: new Date().toISOString().split('T')[0]
+      date: new Date().toISOString().split("T")[0],
     };
 
-    dispatch('close');
+    dispatch("close");
   }
 
   function toggleCategory(category) {
     if (formData.categories.includes(category)) {
-      formData.categories = formData.categories.filter(c => c !== category);
+      formData.categories = formData.categories.filter((c) => c !== category);
     } else {
       formData.categories = [...formData.categories, category];
     }
@@ -55,7 +57,7 @@
     if (newCategory.trim()) {
       categories.add(newCategory.trim());
       toggleCategory(newCategory.trim());
-      newCategory = '';
+      newCategory = "";
     }
   }
 
@@ -63,12 +65,12 @@
     event.stopPropagation();
     if (confirm(`Remove category "${category}"?`)) {
       categories.remove(category);
-      formData.categories = formData.categories.filter(c => c !== category);
+      formData.categories = formData.categories.filter((c) => c !== category);
     }
   }
 
   function handleClose() {
-    dispatch('close');
+    dispatch("close");
   }
 </script>
 
@@ -120,11 +122,7 @@
 
         <div class="form-group">
           <label for="date">Date</label>
-          <input
-            id="date"
-            type="date"
-            bind:value={formData.date}
-          />
+          <input id="date" type="date" bind:value={formData.date} />
         </div>
 
         <div class="form-group">
@@ -138,7 +136,10 @@
                 on:click={() => toggleCategory(category)}
               >
                 {category}
-                <span class="remove-category" on:click={(e) => removeCategory(category, e)}>×</span>
+                <span
+                  class="remove-category"
+                  on:click={(e) => removeCategory(category, e)}>×</span
+                >
               </button>
             {/each}
           </div>
@@ -148,7 +149,8 @@
               type="text"
               bind:value={newCategory}
               placeholder="Add new category"
-              on:keypress={(e) => e.key === 'Enter' && (e.preventDefault(), addNewCategory())}
+              on:keypress={(e) =>
+                e.key === "Enter" && (e.preventDefault(), addNewCategory())}
             />
             <button type="button" on:click={addNewCategory}>+</button>
           </div>
@@ -158,9 +160,7 @@
           <button type="button" class="btn-secondary" on:click={handleClose}>
             Cancel
           </button>
-          <button type="submit" class="btn-primary">
-            Add Transaction
-          </button>
+          <button type="submit" class="btn-primary"> Add Transaction </button>
         </div>
       </form>
     </div>
