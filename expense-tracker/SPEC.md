@@ -1,13 +1,13 @@
 # Expense Tracker - MVP Specification
 
 ## Purpose
-Personal/household finance management for 1-3 people with shared view (everyone sees the same data).
+Personal/household finance management 
 
 ## Tech Stack
 - **Frontend**: Svelte + Vite
-- **App Type**: PWA (Progressive Web App)
+- **App Type**: PWA (Progressive Web App) with a view to update to hybrid mobile app using Capacitor Jsor something similar
 - **Storage**: Local storage (IndexedDB or localStorage)
-- **Sync**: Export/import for device syncing
+- **Sync**: Export/import via for device syncing; maybe later also allow some API or cloud storage sync
 
 ## Core Features (MVP)
 - Add income/expense transactions
@@ -25,8 +25,8 @@ Personal/household finance management for 1-3 people with shared view (everyone 
   - Summary/totals display
 
 ## Future Features (Post-MVP)
-- Recurring expenses tracking
-- Planned expenses with ranges (e.g., "between $100-$200")
+- Recurring expenses tracking: every month/fortnight/week there is phone/gym/rent to pay
+- Planned expenses with ranges (e.g., "between $100-$200"): car service might cost $400-500
 - Spending analytics:
   - Category breakdowns
   - Monthly splits
