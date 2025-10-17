@@ -29,3 +29,7 @@
 [ ] My website
 
 [ ] Otp-Sharp-Cli
+
+[ ] Work log (hours worked, items, extra stuff)
+
+[ ] Breath work
