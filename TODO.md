@@ -33,3 +33,6 @@
 [ ] Work log (hours worked, items, extra stuff)
 
 [ ] Breath work
+
+[ ] Language learning
+
